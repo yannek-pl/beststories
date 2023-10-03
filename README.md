@@ -1,14 +1,24 @@
 This program was created in the process of recruitation to show skills of the author.
+
 The program implements requirements stated in "Santander - Developer Coding Test" doc.
 
-#API:
+# API:
 
 There is one endpoint:
 
 [GET] /BestStories
+
 param: int count - number of requested Best Stories details
-example query: http://localhost:5000/BestStories?count=4
+
+example query: 
+
+```
+http://localhost:5000/BestStories?count=4
+```
+
 example response content:
+
+```
 [
   {
     "title": "What every software developer must know about Unicode in 2023",
@@ -43,10 +53,14 @@ example response content:
     "commentCount": 0
   }
 ]
+```
 
-#Assumptions and possible enhancements
+# Assumptions and possible enhancements
+
 It was observed and assumed that https://hacker-news.firebaseio.com returns constant list of stories IDs. In order not to overload the server, the list is downloaded once at the startup and used for all further client queries.
+
 However, if the list changes from time to time, often than the the app is planned to be restarted, the list should be downloaded repeatedly with apropriate period.
+
 The risk of overloading the Hacker News API can be diminish by creating a cache in the app (as it was observed that the details of Best Stories don't change either) and serve data from it. But for the purpose of demostration of asynchronous querying of remote server, the API is queried for the requested content once per every the app's client request.
 
 author: Lukasz J.
